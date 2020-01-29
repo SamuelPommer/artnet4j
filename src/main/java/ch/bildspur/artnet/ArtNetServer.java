@@ -96,6 +96,7 @@ public class ArtNetServer extends ArtNetNode implements Runnable {
                 socket.receive(receivedPacket);
                 logger.finer("received new packet");
                 ArtNetPacket packet = ArtNetPacketParser.parse(receivedPacket);
+                packet.setAddress(receivedPacket.getSocketAddress());
                 if (packet != null) {
                     if (packet.getType() == PacketType.ART_POLL) {
                         sendArtPollReply(receivedPacket.getAddress(),

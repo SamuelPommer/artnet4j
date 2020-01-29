@@ -19,12 +19,14 @@
 
 package ch.bildspur.artnet.packets;
 
+import java.net.SocketAddress;
 import java.util.logging.Logger;
 
 public abstract class ArtNetPacket {
 
     public static final byte[] HEADER = "Art-Net\0".getBytes();
     public static final byte[] ART_EXT_HEADER = "Art-Ext\0".getBytes();
+    private SocketAddress socketAddress;
 
     public static final int PROTOCOL_VERSION = 14;
 
@@ -107,5 +109,13 @@ public abstract class ArtNetPacket {
     @Override
     public String toString() {
         return data.toHex(getLength());
+    }
+
+    public void setAddress(SocketAddress socketAddress) {
+        this.socketAddress = socketAddress;
+    }
+
+    public SocketAddress getAddress() {
+        return socketAddress;
     }
 }
