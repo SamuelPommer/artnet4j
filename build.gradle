@@ -1,7 +1,7 @@
 plugins {
     id 'java-library'
-    //id 'maven-publish'
-    //id 'signing'
+    id 'maven-publish'
+    id 'signing'
 }
 
 group 'ch.bildspur'
@@ -51,11 +51,10 @@ task fatJar(type: Jar) {
     from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
     with jar
 }
-/*
+
 signing {
     sign publishing.publications
 }
-
 
 publishing {
     repositories {
@@ -108,4 +107,4 @@ publishing {
             }
         }
     }
-}*/
+}
